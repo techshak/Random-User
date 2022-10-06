@@ -22,7 +22,10 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.ibstakehome.network.dto.Result
 import java.time.format.TextStyle
+import java.util.*
+import kotlin.collections.ArrayList
 
 @Composable
 fun UsersScreen(
@@ -30,6 +33,7 @@ fun UsersScreen(
 ) {
     val state = viewModel.state
     val textState = remember { mutableStateOf(TextFieldValue("")) }
+    var filtered: List<Result>
 
     Row(
         modifier = Modifier
@@ -116,8 +120,21 @@ fun UsersScreen(
             }
             LazyColumn {
                 val searchedText = textState.value.text
-                items(state.user.size){ i ->
-                    val user = state.user[i]
+                filtered = if (searchedText.isEmpty()){
+                    state.user
+                } else{
+                    val resultList = ArrayList<Result>()
+                    for (user in state.user) {
+                        if (user.toString().lowercase(Locale.getDefault())
+                                .contains(searchedText.lowercase(Locale.getDefault()))
+                        ) {
+                            resultList.add(user)
+                        }
+                    }
+                    resultList
+                }
+                items(filtered.size){ i ->
+                    val user = filtered[i]
                     UserItem(
                         user = user
                     )
