@@ -14,6 +14,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.ibstakehome.navigation.Screens
 import java.util.regex.Pattern
 
 @Composable
@@ -54,7 +55,6 @@ fun LoginScreen(
                 .padding(0.dp, 40.dp, 0.dp, 0.dp)
                 .fillMaxWidth(),
             shape = RoundedCornerShape(8.dp),
-            isError = isValidMail
         )
         Text(
             text = if (!isValidMail && email.text.isNotEmpty()) "Invalid email format" else " ",
@@ -83,7 +83,7 @@ fun LoginScreen(
         Button(
             onClick = {
                         if(isValidMail && isValidPass){
-
+                            navController.navigate(Screens.UserScreen.route)
                         }
                       },
             modifier = Modifier
@@ -99,31 +99,6 @@ fun LoginScreen(
             )
         }
 
-        Box (
-            modifier = Modifier
-                .fillMaxWidth()
-                ) {
-            Column (
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    ) {
 
-                Text(
-                    text = "Name Surname",
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black,
-                )
-
-                Text(
-                    text = "Email: ${email.text}",
-                    color = Color.Black,
-                )
-                Text(
-                    text = "Address: ${email.text}",
-                    color = Color.Black,
-                )
-            }
-
-        }
     }
 }

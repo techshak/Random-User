@@ -1,3 +1,5 @@
 package com.example.ibstakehome.network.dto
 
-class Location
+data class Location(
+    val street :Street,
+)
