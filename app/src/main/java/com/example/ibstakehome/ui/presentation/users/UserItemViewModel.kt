@@ -21,14 +21,17 @@ class UserItemViewModel @Inject constructor(
         getThree()
     }
 
-  private fun getUser()=
+  private fun getUser() =
         viewModelScope.launch {
             userRepository.getUser()
                 .collect{result->
                     when(result){
                         is Resource.Success -> {
                             result.data?.let { user->
-                                state = state.copy(user= user.results)
+                                for(item in user.results){
+                                 state.user.add(item)
+                                    Log.d("TEST", item.name.first)
+                                }
                             }
                         }
                         is Resource.Error -> Unit

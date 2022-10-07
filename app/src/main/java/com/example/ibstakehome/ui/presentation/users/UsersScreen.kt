@@ -52,20 +52,19 @@ fun UsersScreen(
                 fontSize = 20.sp,
                 fontStyle = FontStyle.Italic,
                 modifier = Modifier
-                    .padding(10.dp)
+                    .padding(10.dp,30.dp,10.dp,10.dp)
                     .align(Alignment.Start)
             )
             Spacer(modifier = Modifier.width(4.dp))
 
             //Search Bar
             TextField(
-
                 value = textState.value,
                 onValueChange = { value ->
                     textState.value = value
                 },
                 modifier = Modifier
-                    .padding(10.dp,0.dp)
+                    .padding(7.dp,0.dp)
                     .fillMaxWidth(),
                 textStyle = androidx.compose.ui.text.TextStyle(
                     color = Color.Black,
@@ -118,7 +117,10 @@ fun UsersScreen(
                         .padding(10.dp)
                 )
             }
-            LazyColumn {
+            LazyColumn (
+                modifier = Modifier
+                    .padding(10.dp,30.dp,10.dp,0.dp)
+                    ){
                 val searchedText = textState.value.text
                 filtered = if (searchedText.isEmpty()){
                     state.user

@@ -32,8 +32,9 @@ fun LoginScreen(
         Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .padding(20.dp)
-            .background(color = Color.White)
+            .padding(20.dp,0.dp)
+            .background(color = Color.White),
+    verticalArrangement = Arrangement.Center,
     ){
         Text(
             text = "Login",
@@ -42,7 +43,6 @@ fun LoginScreen(
             fontSize = 30.sp,
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
-                .padding(top = 50.dp)
         )
         OutlinedTextField(
             value = email,

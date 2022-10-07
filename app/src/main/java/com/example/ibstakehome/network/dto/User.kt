@@ -5,5 +5,5 @@ import com.example.ibstakehome.network.dto.Result
 
 data class User(
     val info: Info,
-    val results: List<Result>
+    val results: MutableList<Result>
 )
